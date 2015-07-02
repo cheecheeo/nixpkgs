@@ -9783,6 +9783,42 @@ let
     };
   };
 
+  variety = buildPythonPackage rec {
+    name = "variety";
+    version = "0.5.3";
+
+    src = pkgs.fetchurl {
+      url = "https://launchpad.net/variety/trunk/${version}/+download/${name}_${version}.tar.gz";
+      md5 = "96b702f27bee4d4fe7f185b434a39534";
+    };
+
+    buildInputs = with pythonPackages; [
+                                         distutils_extra
+                                         pkgs.intltool
+                                         lxml
+                                         beautifulsoup4
+                                         pkgs.desktop_file_utils
+                                         pkgs.imagemagick
+                                         pkgs.gtk3
+                                         pkgs.gnome3.yelp
+                                         pkgs.gnome3.webkitgtk24x
+                                         pil
+                                         notify
+                                         dbus
+                                         pycairo
+                                         pkgs.pyexiv2
+                                         pycurl
+                                         httplib2
+                                         configobj
+                                         pygobject3
+                                       ];
+
+    meta = with stdenv.lib; {
+      homepage = http://peterlevi.com/variety/;
+      description = "Changes the wallpaper on a regular interval using user-specified or automatically downloaded images.";
+      platforms = platforms.linux;
+    };
+  };
 
   pygeoip = pythonPackages.buildPythonPackage rec {
     name = "pygeoip-0.3.2";
