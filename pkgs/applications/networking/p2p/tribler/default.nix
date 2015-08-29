@@ -31,7 +31,7 @@ stdenv.mkDerivation rec {
     pythonPackages.pyasn1
     pythonPackages.requests
     pythonPackages.setuptools
-    pythonPackages.m2crypto
+    pythonPackages.m2cryptoswig1
     pythonPackages.sqlite3
   ];
 

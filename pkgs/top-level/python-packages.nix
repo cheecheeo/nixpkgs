@@ -7467,6 +7467,28 @@ let
   };
 
 
+  m2cryptoswig1 = buildPythonPackage rec {
+    version = "0.21.1";
+    name = "m2crypto-${version}";
+
+    src = pkgs.fetchurl {
+      url = "http://pypi.python.org/packages/source/M/M2Crypto/M2Crypto-${version}.tar.gz";
+      md5 = "f93d8462ff7646397a9f77a2fe602d17";
+    };
+
+    buildInputs = with self; [ pkgs.swig1 pkgs.openssl ];
+
+    preBuild = "${python}/bin/${python.executable} setup.py build_ext --openssl=${pkgs.openssl}";
+
+    doCheck = false; # another test that depends on the network.
+
+    meta = {
+      description = "A Python crypto and SSL toolkit";
+      homepage = http://chandlerproject.org/Projects/MeTooCrypto;
+    };
+  };
+
+
   Mako = buildPythonPackage rec {
     name = "Mako-1.0.1";
 
